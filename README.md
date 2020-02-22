@@ -9,3 +9,8 @@ Test commit
 - get date compiled with the pe.dump_info()
 - list imports
 - functionality will be tough to do 
+
+# Part 2
+- we can create a simple web page 
+- we can also make the pe file that is good come seem malicous. 
+- add a button to make the file seem good
