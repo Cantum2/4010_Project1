@@ -1,7 +1,6 @@
 # 4010_Project1
 
-Test commit
-
+- add security measure to make sure we aren't running this no in a vm?
 - run analysis of the strings and create a regex to match ip addresses 
  so we can predict outbound network traffic
 
