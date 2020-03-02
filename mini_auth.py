@@ -1,4 +1,8 @@
 def auth_manager():
+    """
+    Basic auth to make people second guess which exes' they are running
+    :return: boolean
+    """
     print('****************************************************************************')
     print('* This is basic password input just in case you forgot to run this in a vm *')
     print('****************************************************************************')

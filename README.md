@@ -13,6 +13,9 @@ Great! Now lets run the code. This could vary depending on editor. For the most 
 2. I have included two exe files. They are both of the [Strings](https://docs.microsoft.com/en-us/sysinternals/downloads/strings) library from microsoft. One is packed with upx and one is not.
 3.  I also included the upx files so you can pack files as needed just shove the file into the dir containing the upx.exe file and cd into that directory. Then run `upx file_name.exe` and it will pack it
 
+## Testing
+1. Tests are in the tests.py file and should try to pass
+
 ## Goals of the project
 ### Part 1 goals
 - add security measure to make sure we aren't running this no in a vm?
