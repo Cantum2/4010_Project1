@@ -8,7 +8,6 @@ import re
 def file_is_packed(file):
     """
     Checks for upx packing
-    https://stackoverflow.com/questions/17195924/python-equivalent-of-unix-strings-utility
     :param file: pefile object
     :return: boolean
     """
@@ -24,6 +23,7 @@ def file_is_packed(file):
 def get_strings(path):
     """
     Gets strings in the file
+    https://stackoverflow.com/questions/17195924/python-equivalent-of-unix-strings-utility
     :param path: string, required
     :return: string
     """
