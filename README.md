@@ -8,6 +8,12 @@
 ## Running
 Great! Now lets run the code. This could vary depending on editor. For the most part just click the giant play button where ever you see it. 
 
+## Contributing
+1. git pull
+2. git add .
+3. git commit -am "ENTER YOUR MESSAGE HERE"
+4. git push
+
 ### Running Notes
 1. You will be prompted to enter a password. This *isnt* for security! This is just to make sure that you are in a vm if you are analyzing a potentially malicious executable. 
 2. I have included two exe files. They are both of the [Strings](https://docs.microsoft.com/en-us/sysinternals/downloads/strings) library from microsoft. One is packed with upx and one is not.
