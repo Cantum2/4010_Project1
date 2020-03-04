@@ -13,6 +13,7 @@ def file_is_packed(file):
     """
     ret_val = False
     for section in file.sections:
+        print(section.Name);
         if 'UPX' in str(section.Name):
             ret_val = True
             break
@@ -84,11 +85,22 @@ def init_file(path):
     return [path, is_valid_file]
 
 
+def write_to_html(html_string):
+    html_file = open('demo.html', 'w')
+    html_file.write(html_string)
+    html_file.close()
+
+
 def execute_project():
     potential_path = input('Enter file path or just press enter for default file: ')
     exe_path = init_file(potential_path)[0]
     file = pe.PE(exe_path)
     print('Potentially malicious strings are: ', analyze_strings(exe_path))
+    str = "<!DOCTYPE html> \n <html> \n <head> </head> <body >"
+    if not file_is_packed(file):
+        str += "<p style='font-size: 35px'> File is packed</p> \n"
+    str += '</html>\n</body>'
+    write_to_html(str)
     print('File is packed: ', file_is_packed(file))
     print('File was compiled on: ', get_compiled_date(file))
 
