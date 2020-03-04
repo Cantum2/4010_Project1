@@ -29,5 +29,5 @@ Great! Now lets run the code. This could vary depending on editor. For the most 
 
 ### Part 2 goals
 - we can create a simple web page 
-- we can also make the pe file that is good come seem malicous. 
+- we can also make the pe file that is good seem malicous. 
 - add a button to make the file seem good
