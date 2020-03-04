@@ -1,9 +1,11 @@
-
 import pefile as pe
 from mini_auth import auth_manager
 import string
 import re
 
+  
+HTML_STRING_START = "<!DOCTYPE html> \n <html> \n <head> </head> <body style='background-color: graysmoke'>"
+HTML_STRING_END = '</html>\n</body>'
 
 def file_is_packed(file):
     """
@@ -93,16 +95,21 @@ def write_to_html(html_string):
 
 def execute_project():
     potential_path = input('Enter file path or just press enter for default file: ')
+    result_string = HTML_STRING_START
     exe_path = init_file(potential_path)[0]
     file = pe.PE(exe_path)
-    print('Potentially malicious strings are: ', analyze_strings(exe_path))
-    str = "<!DOCTYPE html> \n <html> \n <head> </head> <body >"
-    if not file_is_packed(file):
-        str += "<p style='font-size: 35px'> File is packed</p> \n"
-    str += '</html>\n</body>'
-    write_to_html(str)
-    print('File is packed: ', file_is_packed(file))
-    print('File was compiled on: ', get_compiled_date(file))
+    print(exe_path)
+    result_string += "<h1> Report for: "+exe_path+"</h1>\n"
+    result_string += "<p style='font-size: 35px'> File is not packed</p> \n" if not file_is_packed(file) else "<p style='font-size: 35px'> File is packed</p> \n"
+    result_string += "<p> The file was compiled on: " + get_compiled_date(file) + "</p>\n"
+    dangerous_strings = analyze_strings(exe_path)
+    if len(dangerous_strings) > 0:
+        result_string += "<p>Here are the potentially malicous strings:</p>\n <ul>"
+        for string in dangerous_strings:
+            result_string += "<li>" + string + "</li>"
+        result_string += "</ul>"
+    result_string += HTML_STRING_END
+    write_to_html(result_string)
 
 
 # super sophisticated security
