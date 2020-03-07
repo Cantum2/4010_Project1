@@ -4,8 +4,19 @@ import string
 import re
 
   
-HTML_STRING_START = "<!DOCTYPE html> \n <html> \n <head> </head> <body style='background-color: graysmoke'>"
-HTML_STRING_END = '</html>\n</body>'
+HTML_STRING_START = ("<!DOCTYPE html>" + 
+"\n <html> \n <head>" +
+"<link rel='stylesheet' href='styles.css'>"+
+"<script type='text/javascript' src='index.js'></script> </head>"+ 
+"<body style='background-color: graysmoke'> " +
+    "<div name='loading-div' class='loading-div'>" +
+        "<div class='loading-gif'>"+
+        "</div>"+ 
+        "<p name='hacker-text' style='text-align: center;'>" +
+        "</p>"
+    "</div>" +
+"<div name='loaded-div' style='display: none;'>")
+HTML_STRING_END = '</div></body>\n</html>'
 
 def file_is_packed(file):
     """
@@ -88,7 +99,7 @@ def init_file(path):
 
 
 def write_to_html(html_string):
-    html_file = open('demo.html', 'w')
+    html_file = open('index.html', 'w')
     html_file.write(html_string)
     html_file.close()
 
@@ -99,7 +110,7 @@ def execute_project():
     exe_path = init_file(potential_path)[0]
     file = pe.PE(exe_path)
     print(exe_path)
-    result_string += "<h1> Report for: "+exe_path+"</h1>\n"
+    result_string += "<h1 style='text-align: center;'> Report for: "+exe_path.replace('./', '')+"</h1>\n"
     result_string += "<p style='font-size: 35px'> File is not packed</p> \n" if not file_is_packed(file) else "<p style='font-size: 35px'> File is packed</p> \n"
     result_string += "<p> The file was compiled on: " + get_compiled_date(file) + "</p>\n"
     dangerous_strings = analyze_strings(exe_path)

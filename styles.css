@@ -1,0 +1,17 @@
+.loading-div {
+    position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.loading-gif {
+    background-image: url('loading-gif.gif');
+    background-color: black;
+    height: 300px;
+    width: 500px; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
