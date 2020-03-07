@@ -1,5 +1,5 @@
 # 4010_Project1
-
+y
 ## Set up
 1. Make sure you have python downloaded if you dont go [here](https://www.python.org/downloads/)
 2. Download an editor such as [Pycharm](https://www.jetbrains.com/pycharm/), [VsCode](https://code.visualstudio.com/download) or [Anaconda](https://www.anaconda.com/distribution/)
