@@ -8,7 +8,7 @@ HTML_STRING_START = ("<!DOCTYPE html>" +
 "\n <html> \n <head>" +
 "<link rel='stylesheet' href='styles.css'>"+
 "<script type='text/javascript' src='index.js'></script> </head>"+ 
-"<body style='background-color: graysmoke'> " +
+"<body> " +
     "<div name='loading-div' class='loading-div'>" +
         "<div class='loading-gif'>"+
         "</div>"+ 
@@ -81,6 +81,14 @@ def get_compiled_date(file):
     return (date.split('['))[1].split(']')[0]
 
 
+def get_imports(file):
+    for entry in file.DIRECTORY_ENTRY_IMPORT:
+        dll_name = entry.dll.decode('utf-8')
+        if dll_name == "KERNEL32.dll":
+            for func in entry.imports:
+                print(func.name.decode('utf-8'))
+
+
 def init_file(path):
     """
     Verifies file exists at provided path and handles it
@@ -110,6 +118,7 @@ def execute_project():
     exe_path = init_file(potential_path)[0]
     file = pe.PE(exe_path)
     print(exe_path)
+    get_imports(file)
     result_string += "<h1 style='text-align: center;'> Report for: "+exe_path.replace('./', '')+"</h1>\n"
     result_string += "<p style='font-size: 35px'> File is not packed</p> \n" if not file_is_packed(file) else "<p style='font-size: 35px'> File is packed</p> \n"
     result_string += "<p> The file was compiled on: " + get_compiled_date(file) + "</p>\n"
