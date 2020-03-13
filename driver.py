@@ -3,6 +3,8 @@ from mini_auth import auth_manager
 import string
 import re
 
+TAB_COUNT = 4
+
   
 HTML_STRING_START = ("<!DOCTYPE html>" + 
 "\n <html> \n <head>" +
@@ -120,9 +122,20 @@ def execute_project():
     file = pe.PE(exe_path)
     print(exe_path)
     imports = get_imports(file)
+    ############ begin tabs
+    result_string += "<div>"
+    for i in range(0, TAB_COUNT+1):
+        result_string += "<button onclick='tabChanged("+str(i)+")'> Tab: "+str(i)+"</button>"
+    result_string += "<div>"
+    ############ end tabs
+    ############ 0th tab
     result_string += "<h1 style='text-align: center;'> Report for: "+exe_path.replace('./', '')+"</h1>\n"
+ 
+    result_string += "<div name='0'>"
     result_string += "<p style='font-size: 35px'> File is not packed</p> \n" if not file_is_packed(file) else "<p style='font-size: 35px'> File is packed</p> \n"
     result_string += "<p> The file was compiled on: " + get_compiled_date(file) + "</p>\n"
+    result_string += "</div>"
+ 
     dangerous_strings = analyze_strings(exe_path)
     if len(dangerous_strings) > 0:
         result_string += "<p>Here are the potentially malicous strings:</p>\n <ul>"
@@ -139,7 +152,7 @@ def execute_project():
             count += 1
         result_string += "</tr>"
         result_string += "</tbody></table>"
-        
+
     result_string += HTML_STRING_END
     write_to_html(result_string)
 

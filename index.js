@@ -18,3 +18,7 @@ setTimeout(() => {
     document.getElementsByName('loading-div')[0].style.display = 'none';
     clearInterval(interval); 
 }, 6000);
+
+function tabChanged(index) {
+    console.log(index);
+}
