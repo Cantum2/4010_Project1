@@ -8,7 +8,7 @@ HTML_STRING_START = ("<!DOCTYPE html>" +
 "\n <html> \n <head>" +
 "<link rel='stylesheet' href='styles.css'>"+
 "<script type='text/javascript' src='index.js'></script> </head>"+ 
-"<body> " +
+"<body style='background-color: #ff00ff; color: #00e8ff;'>" +
     "<div name='loading-div' class='loading-div'>" +
         "<div class='loading-gif'>"+
         "</div>"+ 
@@ -82,12 +82,13 @@ def get_compiled_date(file):
 
 
 def get_imports(file):
+    temp_imports = []
     for entry in file.DIRECTORY_ENTRY_IMPORT:
         dll_name = entry.dll.decode('utf-8')
         if dll_name == "KERNEL32.dll":
             for func in entry.imports:
-                print(func.name.decode('utf-8'))
-
+                temp_imports.append(func.name.decode('utf-8'))
+    return temp_imports
 
 def init_file(path):
     """
@@ -118,7 +119,7 @@ def execute_project():
     exe_path = init_file(potential_path)[0]
     file = pe.PE(exe_path)
     print(exe_path)
-    get_imports(file)
+    imports = get_imports(file)
     result_string += "<h1 style='text-align: center;'> Report for: "+exe_path.replace('./', '')+"</h1>\n"
     result_string += "<p style='font-size: 35px'> File is not packed</p> \n" if not file_is_packed(file) else "<p style='font-size: 35px'> File is packed</p> \n"
     result_string += "<p> The file was compiled on: " + get_compiled_date(file) + "</p>\n"
@@ -128,6 +129,17 @@ def execute_project():
         for string in dangerous_strings:
             result_string += "<li>" + string + "</li>"
         result_string += "</ul>"
+    if len(imports) > 0:
+        result_string += "<p>Here are the imports:</p>\n <table><thead><thead><tbody>"
+        count = 0
+        for string in imports:
+            if count % 5 == 0:
+                result_string += "</tr><tr>"
+            result_string += "<td>" + string + "</td>"
+            count += 1
+        result_string += "</tr>"
+        result_string += "</tbody></table>"
+        
     result_string += HTML_STRING_END
     write_to_html(result_string)
 

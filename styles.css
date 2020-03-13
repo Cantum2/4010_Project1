@@ -25,3 +25,17 @@
   background-repeat: no-repeat;
   background-size: cover; 
 }
+
+
+table {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
