@@ -35,6 +35,35 @@ td {
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  height: 50px;
+  font-weight:bold;
+  font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;
+  transition: .5s;
+}
+
+.tab-button {
+  border: none;
+  background-color: transparent;
+  color:white;
+}
+
+.tab-button:hover {
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+
+.tab-button-selected {
+  background-color: rgb(155,155,155);
+  color: rgb(50,50,50);
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
