@@ -3,9 +3,9 @@ from mini_auth import auth_manager
 import string
 import re
 
-TAB_COUNT = 4
 
-TAB_NAMES = ['Packed/Compiled', 'Strings', 'Imports', 'Null', 'Null']
+TAB_NAMES = ['Packed/Compiled', 'Strings', 'Imports']
+TAB_COUNT = len(TAB_NAMES) - 1
 
   
 HTML_STRING_START = ("<!DOCTYPE html>" + 
@@ -100,7 +100,8 @@ def get_imports_and_functions(file):
         #check to make sure it exists before clearning the array
         temp_functions[dll_name] = [] if dll_name not in temp_functions else temp_functions[dll_name]
         for func in entry.imports:
-            temp_functions[dll_name].append(func.name.decode('utf-8'))
+            if func.name:
+                temp_functions[dll_name].append(func.name.decode('utf-8'))
     return [temp_imports, temp_functions]
 
 def init_file(path):

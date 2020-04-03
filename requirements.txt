@@ -1,0 +1,4 @@
+ Required libs:
+ 1. pefile 
+ 2. string
+ 3. re
