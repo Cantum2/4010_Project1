@@ -18,6 +18,9 @@ Great! Now lets run the code. This could vary depending on editor. For the most 
 3.  I also included the upx files so you can pack files as needed just shove the file into the dir containing the upx.exe file and cd into that directory. Then run `upx file_name.exe` and it will pack it
 4. The script will generate the `index.html` file. Open that file in a browser and it will have the results. 
 
+## Samples
+View the current `index.html` file in a browser to see a sample of an analysis done on `notepad.exe`
+
 ## Contributing
 1. git pull
 2. git add .
